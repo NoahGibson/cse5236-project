@@ -20,29 +20,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
+    <Button
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcom!"
+        android:text="Words"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView"/>
-
-
-    <Button
-        android:id="@+id/camera_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open Camera"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"/>
-
-    <Button
-        android:id="@+id/folder_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Folder"
-        android:layout_below="@+id/camera_button"
         android:layout_centerHorizontal="true"/>
 
     <include layout="@layout/content_main" />

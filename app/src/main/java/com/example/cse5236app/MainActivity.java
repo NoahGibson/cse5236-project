@@ -10,7 +10,8 @@ import android.content.Intent;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
+    private Button camera_button;
+    private Button folder_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,17 +20,31 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("in onCreate");
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        camera_button = (Button) findViewById(R.id.camera_button);
+        camera_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity2();
             }
         });
+
+        folder_button = (Button) findViewById(R.id.folder_button);
+        folder_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openActivityFolder();
+            }
+        });
+
     }
 
     public void openActivity2() {
         Intent intent = new Intent(this, Activity2.class);
+        startActivity(intent);
+    }
+
+    public void openActivityFolder(){
+        Intent intent = new Intent(this, FolderActivity.class);
         startActivity(intent);
     }
 
