@@ -21,7 +21,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <Button
-        android:id="@+id/textView"
+        android:id="@+id/words_folder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Words"
