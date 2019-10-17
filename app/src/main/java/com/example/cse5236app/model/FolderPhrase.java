@@ -3,8 +3,8 @@ package com.example.cse5236app.model;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-
-@Entity(tableName = "folder_phrase",
+/*
+@Entity(tableName = "folder_phrase_table",
         primaryKeys = { "folder_id", "phrase_id" },
         foreignKeys = {
                 @ForeignKey(entity = Folder.class,
@@ -23,3 +23,4 @@ public class FolderPhrase {
     public int phraseId;
 
 }
+*/

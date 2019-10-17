@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+import android.util.Log;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        System.out.println("in onCreate");
+        Log.d("main","in onCreate");
         setContentView(R.layout.activity_main);
 
         camera_button = (Button) findViewById(R.id.camera_button);
@@ -51,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("in onResume");
+        Log.d("main","in onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        System.out.println("in onPause");
+        Log.d("main","in onPause");
     }
 
     @Override

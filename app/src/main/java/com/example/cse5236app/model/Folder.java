@@ -1,16 +1,35 @@
 package com.example.cse5236app.model;
 
-import androidx.room.ColumnInfo;
+import com.example.cse5236app.dao.FolderDao;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "folder")
+
+@Entity(tableName = "folder_table")
 public class Folder {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
-    @PrimaryKey
-    public int id;
+    private String title;
 
-    @ColumnInfo(name = "name")
-    public String name;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Folder(String title) {
+        this.title = title;
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
+
 
 }
+
+

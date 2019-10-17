@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
-@Entity(tableName = "synonym",
+@Entity(tableName = "synonym_table",
         primaryKeys = { "word_id", "synonym_id" },
         foreignKeys = {
                 @ForeignKey(entity = Folder.class,
