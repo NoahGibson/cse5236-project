@@ -13,7 +13,7 @@ import com.example.cse5236app.dao.FolderDao;
 import com.example.cse5236app.model.Folder;
 
 
-@Database(entities = Folder.class, version = 1)
+@Database(entities = Folder.class, version = 1, exportSchema = false)
 public abstract class FolderDatabase extends RoomDatabase {
 
     private static FolderDatabase instance;
@@ -24,11 +24,36 @@ public abstract class FolderDatabase extends RoomDatabase {
         if(instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     FolderDatabase.class, "folder_database")
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration().addCallback(roomCallback)
                     .build();
         }
         return instance;
 }
 
+
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            new PopulateDbAsyncTask(instance).execute();
+        }
+    };
+
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private FolderDao folderDao;
+
+        private PopulateDbAsyncTask(FolderDatabase db){
+            folderDao = db.folderDao();
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            folderDao.insert(new Folder("title 1"));
+            folderDao.insert(new Folder("title 2"));
+            folderDao.insert(new Folder("title 3"));
+            return null;
+        }
+
+    }
 
 }

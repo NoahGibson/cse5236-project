@@ -1,6 +1,6 @@
 package com.example.cse5236app.dao;
 
-import com.example.cse5236app.model.FolderPhrase;
+//import com.example.cse5236app.model.FolderPhrase;
 import com.example.cse5236app.model.Phrase;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-
+/*
 @Dao
 public interface FolderPhraseDao {
 
@@ -25,3 +25,4 @@ public interface FolderPhraseDao {
     void removePhraseFromFolder(FolderPhrase folderPhrase);
 
 }
+ */

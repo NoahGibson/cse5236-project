@@ -1,5 +1,5 @@
 package com.example.cse5236app.dao;
-
+/*
 import com.example.cse5236app.model.FolderWord;
 import com.example.cse5236app.model.Word;
 
@@ -25,3 +25,4 @@ public interface FolderWordDao {
     void removeWordFromFolder(FolderWord folderWord);
 
 }
+*/

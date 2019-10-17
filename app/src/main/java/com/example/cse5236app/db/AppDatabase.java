@@ -1,5 +1,5 @@
 package com.example.cse5236app.db;
-
+/*
 import com.example.cse5236app.dao.FolderDao;
 import com.example.cse5236app.dao.FolderPhraseDao;
 import com.example.cse5236app.dao.FolderWordDao;
@@ -15,7 +15,7 @@ import com.example.cse5236app.model.Word;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
-
+/*
 @Database(entities = {
         Word.class,
         Phrase.class,
@@ -23,7 +23,7 @@ import androidx.room.RoomDatabase;
         FolderWord.class,
         FolderPhrase.class,
         Synonym.class
-}, version = 1)
+}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract WordDao wordDao();
@@ -39,3 +39,4 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract SynonymDao synonymDao();
 
 }
+*/
