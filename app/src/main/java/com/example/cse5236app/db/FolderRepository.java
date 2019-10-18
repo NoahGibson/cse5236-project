@@ -1,16 +1,11 @@
 package com.example.cse5236app.db;
 
 import com.example.cse5236app.dao.FolderDao;
-import com.example.cse5236app.db.FolderDatabase;
 import com.example.cse5236app.model.Folder;
 import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Database;
-
-import com.example.cse5236app.dao.FolderDao;
-import com.example.cse5236app.model.Folder;
 
 import java.util.List;
 
@@ -21,7 +16,7 @@ public class FolderRepository {
 
 
     public FolderRepository(Application application) {
-        FolderDatabase database = FolderDatabase.getInstance(application);
+        AppDatabase database = AppDatabase.getInstance(application);
         folderDao = database.folderDao();
         allFolders = folderDao.getAllFolders();
     }
