@@ -11,10 +11,10 @@ import androidx.room.Query;
 @Dao
 public interface PhraseDao {
 
-    @Query("SELECT * FROM phrase")
+    @Query("SELECT * FROM phrase_table")
     List<Phrase> getAll();
 
-    @Query("SELECT * FROM phrase WHERE id = :id")
+    @Query("SELECT * FROM phrase_table WHERE id = :id")
     Phrase findPhraseById(int id);
 
     @Insert()

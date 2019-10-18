@@ -7,7 +7,7 @@ import androidx.room.ForeignKey;
 @Entity(tableName = "synonym_table",
         primaryKeys = { "word_id", "synonym_id" },
         foreignKeys = {
-                @ForeignKey(entity = Folder.class,
+                @ForeignKey(entity = Word.class,
                         parentColumns = "id",
                         childColumns = "word_id"),
                 @ForeignKey(entity = Word.class,

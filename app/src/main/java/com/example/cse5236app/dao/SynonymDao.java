@@ -13,7 +13,7 @@ import androidx.room.Query;
 @Dao
 public interface SynonymDao {
 
-    @Query("SELECT w.id, w.word, w.definition FROM word w, synonym s " +
+    @Query("SELECT w.id, w.word, w.definition FROM word_table w, synonym_table s " +
             "WHERE s.word_id = :wordId " +
             "AND s.word_id = w.id")
     List<Word> findAllSynonymsForWord(int wordId);

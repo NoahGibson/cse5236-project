@@ -3,7 +3,7 @@ package com.example.cse5236app.model;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-/*
+
 @Entity(tableName = "folder_word_table",
         primaryKeys = { "folder_id", "word_id" },
         foreignKeys = {
@@ -23,4 +23,3 @@ public class FolderWord {
     public int wordId;
 
 }
-*/

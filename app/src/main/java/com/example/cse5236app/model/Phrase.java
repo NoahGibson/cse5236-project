@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "phrase_table")
 public class Phrase {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
 
     @ColumnInfo(name = "phrase")
@@ -16,4 +16,30 @@ public class Phrase {
     @ColumnInfo(name = "meaning")
     public String meaning;
 
+    public String getPhrase() {
+        return phrase;
+    }
+
+    public void setPhrase(String phrase) {
+        this.phrase = phrase;
+    }
+
+    public String getMeaning() {
+        return meaning;
+    }
+
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) { this.id = id; }
+
+    public Phrase(String phrase, String meaning) {
+        this.phrase = phrase;
+        this.meaning = meaning;
+    }
 }

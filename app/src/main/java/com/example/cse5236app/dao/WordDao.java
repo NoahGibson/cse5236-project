@@ -11,10 +11,10 @@ import androidx.room.Query;
 @Dao
 public interface WordDao {
 
-    @Query("SELECT * FROM word")
+    @Query("SELECT * FROM word_table")
     List<Word> getAll();
 
-    @Query("SELECT * FROM word WHERE id = :id")
+    @Query("SELECT * FROM word_table WHERE id = :id")
     Word findWordById(int id);
 
     @Insert()
