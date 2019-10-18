@@ -88,9 +88,9 @@ public class FolderActivity extends AppCompatActivity {
             Folder folder = new Folder(title);
             folderViewModel.insert(folder);
 
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Folder saved", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Folder not saved", Toast.LENGTH_SHORT).show();
         }
     }
 
