@@ -24,7 +24,8 @@ public abstract class FolderDatabase extends RoomDatabase {
         if(instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     FolderDatabase.class, "folder_database")
-                    .fallbackToDestructiveMigration().addCallback(roomCallback)
+                    .fallbackToDestructiveMigration()
+                    .addCallback(roomCallback)
                     .build();
         }
         return instance;

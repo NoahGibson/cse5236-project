@@ -3,6 +3,7 @@ package com.example.cse5236app.model;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,9 +20,9 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
     @NonNull
     @Override
     public FolderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemview = LayoutInflater.from(parent.getContext())
+        View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.folder_item, parent, false);
-        return new FolderHolder(itemview);
+        return new FolderHolder(itemView);
     }
 
     @Override
@@ -40,6 +41,10 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
         notifyDataSetChanged(); //this will be changed later
     }
 
+    public Folder getFolderAt(int position){
+        return folders.get(position);
+    }
+
     class FolderHolder extends RecyclerView.ViewHolder{
         private TextView textViewTitle;
 
@@ -48,4 +53,6 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
             textViewTitle = itemView.findViewById(R.id.text_view_title);
         }
     }
+
+
 }
