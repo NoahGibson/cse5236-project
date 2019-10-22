@@ -1,15 +1,20 @@
-package com.example.cse5236app.model;
+package com.example.cse5236app.viewadapter;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cse5236app.AddFolderActivity;
+import com.example.cse5236app.FolderActivity;
 import com.example.cse5236app.R;
+import com.example.cse5236app.model.Folder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +25,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
     @NonNull
     @Override
     public FolderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.folder_item, parent, false);
         return new FolderHolder(itemView);
@@ -27,8 +33,9 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
 
     @Override
     public void onBindViewHolder(@NonNull FolderHolder holder, int position) {
+
         Folder currentFolder = folders.get(position);
-        holder.textViewTitle.setText(currentFolder.getTitle());
+        holder.bind(currentFolder);
     }
 
     @Override
@@ -45,14 +52,31 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
         return folders.get(position);
     }
 
-    class FolderHolder extends RecyclerView.ViewHolder{
+
+    class FolderHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private Folder mFolder;
+
         private TextView textViewTitle;
 
         public FolderHolder(View itemView){
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.text_view_title);
         }
-    }
 
+        public void bind(Folder folder) {
+            mFolder = folder;
+            textViewTitle.setText(folder.getTitle());
+            textViewTitle.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Context context = view.getContext();
+            Intent intent = AddFolderActivity.newUpdateFolderIntent(context, mFolder);
+            ((Activity) context).startActivityForResult(intent, FolderActivity.UPDATE_FOLDER_REQUEST);
+        }
+
+    }
 
 }

@@ -18,9 +18,8 @@ public interface FolderDao {
     @Query("SELECT * FROM folder_table")
     LiveData<List<Folder>> getAllFolders();
 
-  /*  @Query("SELECT * FROM folder_table WHERE id = :id")
-    Folder findFolderById(int id);
-  */
+    @Query("SELECT * FROM folder_table WHERE id = :id")
+    LiveData<Folder> findFolderById(int id);
 
     @Insert()
     void insert(Folder folder);
