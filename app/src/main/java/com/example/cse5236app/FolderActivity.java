@@ -93,6 +93,9 @@ public class FolderActivity extends AppCompatActivity {
                 return false;
             }
 
+            /**
+             * deletes a folder when swiped
+             */
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 folderViewModel.delete(adapter.getFolderAt(viewHolder.getAdapterPosition()));

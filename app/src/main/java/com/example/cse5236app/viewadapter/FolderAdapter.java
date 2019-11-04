@@ -79,4 +79,6 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
 
     }
 
+
+
 }
