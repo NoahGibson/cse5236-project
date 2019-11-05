@@ -25,6 +25,7 @@ public class CameraSourcePreview extends ViewGroup {
     private boolean mStartRequested;
     private boolean mSurfaceAvailable;
     private CameraSource mCameraSource;
+    private CameraPrompt mCameraPrompt;
 
     private GraphicOverlay mOverlay;
 
@@ -37,7 +38,11 @@ public class CameraSourcePreview extends ViewGroup {
 
         mSurfaceView = new SurfaceView(context);
         mSurfaceView.getHolder().addCallback(new SurfaceCallback());
+
+        mCameraPrompt = new CameraPrompt(context);
+
         addView(mSurfaceView);
+        addView(mCameraPrompt, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
     }
 
     @RequiresPermission(Manifest.permission.CAMERA)

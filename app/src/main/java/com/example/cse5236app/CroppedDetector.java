@@ -28,10 +28,10 @@ public class CroppedDetector extends Detector {
         int mBoxHeight = height;
         int mBoxWidth = mBoxHeight / 2;
 
-        int right = (width / 2) + (mBoxWidth / 2);
-        int left = (width / 2) - (mBoxWidth / 2);
-        int bottom = height;
-        int top = 0;
+        int right = (width / 2) + (width / 4);
+        int left = (width / 2) - (width / 4);
+        int bottom = (height / 2) + (height / 4);
+        int top = (height / 2) - (height / 4);
 
         YuvImage yuvImage = new YuvImage(frame.getGrayscaleImageData().array(), ImageFormat.NV21, width, height, null);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

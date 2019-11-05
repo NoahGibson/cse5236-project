@@ -81,15 +81,13 @@ public class TextScannerFragment extends Fragment {
 
     private void createCameraSource() {
         final TextRecognizer textRecognizer = new TextRecognizer.Builder(getContext()).build();
-        textRecognizer.setProcessor(new OcrDetectorProcessor(mGraphicOverlay));
+        final CroppedDetector croppedDetector = new CroppedDetector(textRecognizer);
+        croppedDetector.setProcessor(new OcrDetectorProcessor(mGraphicOverlay));
 
-//        final CroppedDetector croppedDetector = new CroppedDetector(textRecognizer);
-//        croppedDetector.setProcessor(new OcrDetectorProcessor(mGraphicOverlay));
-
-        if (!textRecognizer.isOperational()) {
+        if (!croppedDetector.isOperational()) {
             Log.w(TAG, "Detector dependencies not loaded yet");
         } else{
-            mCameraSource = new CameraSource.Builder(getContext(), textRecognizer)
+            mCameraSource = new CameraSource.Builder(getContext(), croppedDetector)
                     .setFacing(CameraSource.CAMERA_FACING_BACK)
                     .setRequestedPreviewSize(1280, 1024)
                     .setAutoFocusEnabled(true)

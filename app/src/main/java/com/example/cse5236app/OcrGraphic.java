@@ -75,16 +75,16 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         }
 
         RectF rect = new RectF(text.getBoundingBox());
-        rect.left = translateX(rect.left);
-        rect.top = translateY(rect.top);
-        rect.right = translateX(rect.right);
-        rect.bottom = translateY(rect.bottom);
+        rect.left = translateX(rect.left) + canvas.getWidth() / (float) 4;
+        rect.top = translateY(rect.top) + canvas.getHeight() / (float) 4;
+        rect.right = translateX(rect.right) + canvas.getWidth() / (float) 4;
+        rect.bottom = translateY(rect.bottom) + canvas.getHeight() / (float) 4;
         canvas.drawRect(rect, sRectPaint);
 
         List<? extends Text> textComponents = text.getComponents();
         for (Text currentText : textComponents) {
-            float left = translateX(currentText.getBoundingBox().left);
-            float bottom = translateY(currentText.getBoundingBox().bottom);
+            float left = translateX(currentText.getBoundingBox().left) + canvas.getWidth() / (float) 4;
+            float bottom = translateY(currentText.getBoundingBox().bottom) + canvas.getHeight() / (float) 4;
             canvas.drawText(currentText.getValue(), left, bottom, sTextPaint);
         }
     }
