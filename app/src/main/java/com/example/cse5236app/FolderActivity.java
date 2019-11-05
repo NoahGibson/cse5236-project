@@ -2,6 +2,8 @@ package com.example.cse5236app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.cse5236app.model.Folder;
@@ -24,6 +26,8 @@ public class FolderActivity extends AppCompatActivity {
 
     private FolderViewModel folderViewModel;
 
+    private Button launch_word_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,21 @@ public class FolderActivity extends AppCompatActivity {
 
         initAddFolderButton();
         initFolderList();
+
+        /*
+    This will be deleted later
+    look at this
+     */
+        launch_word_button = (Button) findViewById(R.id.button_open_word);
+        launch_word_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){ openActivityWord(); }
+        });
+    }
+
+    public void openActivityWord() {
+        Intent intent = new Intent(this, WordActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -72,6 +91,7 @@ public class FolderActivity extends AppCompatActivity {
             startActivityForResult(intent, ADD_FOLDER_REQUEST);
         });
     }
+
 
     private void initFolderList() {
 

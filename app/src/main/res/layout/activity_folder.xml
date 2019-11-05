@@ -24,6 +24,13 @@
        app:layout_constraintBottom_toBottomOf="parent"
        />
 
+   <Button
+       android:id="@+id/button_open_word"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Open"
+       android:layout_below="@+id/button_add_folder"
+       android:layout_centerHorizontal="true"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

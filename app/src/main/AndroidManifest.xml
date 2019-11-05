@@ -12,7 +12,13 @@
         <activity android:name=".AddFolderActivity"
             android:parentActivityName=".FolderActivity">
         </activity>
-        <activity android:name=".StoredWordsActivity" />
+        <activity android:name=".WordActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".FolderActivity">
+        </activity>
+        <activity android:name=".AddWordActivity"
+            android:parentActivityName=".WordActivity">
+        </activity>
         <activity android:name=".FolderActivity"
             android:launchMode="singleTop"/>
         <activity android:name=".CameraActivity" />
