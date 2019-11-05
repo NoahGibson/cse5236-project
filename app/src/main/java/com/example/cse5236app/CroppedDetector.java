@@ -25,9 +25,6 @@ public class CroppedDetector extends Detector {
         int width = frame.getMetadata().getWidth();
         int height = frame.getMetadata().getHeight();
 
-        int mBoxHeight = height;
-        int mBoxWidth = mBoxHeight / 2;
-
         int right = (width / 2) + (width / 4);
         int left = (width / 2) - (width / 4);
         int bottom = (height / 2) + (height / 4);

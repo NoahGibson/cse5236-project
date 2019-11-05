@@ -4,7 +4,9 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +15,7 @@ import com.example.cse5236app.ui.GraphicOverlay;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
@@ -31,6 +34,7 @@ public class TextScannerFragment extends Fragment {
     private CameraSourcePreview mCameraPreview;
     private GraphicOverlay<OcrGraphic> mGraphicOverlay;
 
+    private GestureDetector mGestureDetector;
 
     public TextScannerFragment() {}
 
@@ -46,6 +50,13 @@ public class TextScannerFragment extends Fragment {
 
         mCameraPreview = (CameraSourcePreview) v.findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay<OcrGraphic>) v.findViewById(R.id.graphicOverlay);
+
+        mGestureDetector = new GestureDetector(getContext(), new CaptureGestureListener());
+        v.setOnTouchListener((view, motionEvent) -> {
+            mGestureDetector.onTouchEvent(motionEvent);
+            view.performClick();
+            return true;
+        });
 
         int rc = ActivityCompat.checkSelfPermission(v.getContext(), Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
@@ -132,6 +143,32 @@ public class TextScannerFragment extends Fragment {
         }
 
         Log.e(TAG, "Camera permission not granted");
+    }
+
+    private boolean onTap(float rawX, float rawY) {
+        OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
+        TextBlock text = null;
+        if (graphic != null) {
+            text = graphic.getTextBlock();
+            if (text != null && text.getValue() != null) {
+                Log.d(TAG, text.getValue());
+            }
+            else {
+                Log.d(TAG, "text data is null");
+            }
+        }
+        else {
+            Log.d(TAG,"no text detected");
+        }
+        return text != null;
+    }
+
+    private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
+        }
     }
 
 }

@@ -20,6 +20,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
     private static Paint sRectPaint;
     private static Paint sTextPaint;
     private final TextBlock mText;
+    private Canvas mCanvas;
 
     OcrGraphic(GraphicOverlay overlay, TextBlock text) {
         super(overlay);
@@ -56,35 +57,37 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 
     public boolean contains(float x, float y) {
         TextBlock text = mText;
-        if (text == null) {
+        if (text == null || mCanvas == null) {
             return false;
         }
+
         RectF rect = new RectF(text.getBoundingBox());
-        rect.left = translateX(rect.left);
-        rect.top = translateY(rect.top);
-        rect.right = translateX(rect.right);
-        rect.bottom = translateY(rect.bottom);
+        rect.left = translateX(rect.left) + mCanvas.getWidth() / (float) 4;
+        rect.top = translateY(rect.top) + mCanvas.getHeight() / (float) 4;
+        rect.right = translateX(rect.right) + mCanvas.getWidth() / (float) 4;
+        rect.bottom = translateY(rect.bottom) + mCanvas.getHeight() / (float) 4;
         return (rect.left < x && rect.right > x && rect.top < y && rect.bottom > y);
     }
 
     @Override
     public void draw(Canvas canvas) {
         TextBlock text = mText;
+        mCanvas = canvas;
         if (text == null) {
             return;
         }
 
         RectF rect = new RectF(text.getBoundingBox());
-        rect.left = translateX(rect.left) + canvas.getWidth() / (float) 4;
-        rect.top = translateY(rect.top) + canvas.getHeight() / (float) 4;
-        rect.right = translateX(rect.right) + canvas.getWidth() / (float) 4;
-        rect.bottom = translateY(rect.bottom) + canvas.getHeight() / (float) 4;
+        rect.left = translateX(rect.left) + mCanvas.getWidth() / (float) 4;
+        rect.top = translateY(rect.top) + mCanvas.getHeight() / (float) 4;
+        rect.right = translateX(rect.right) + mCanvas.getWidth() / (float) 4;
+        rect.bottom = translateY(rect.bottom) + mCanvas.getHeight() / (float) 4;
         canvas.drawRect(rect, sRectPaint);
 
         List<? extends Text> textComponents = text.getComponents();
         for (Text currentText : textComponents) {
-            float left = translateX(currentText.getBoundingBox().left) + canvas.getWidth() / (float) 4;
-            float bottom = translateY(currentText.getBoundingBox().bottom) + canvas.getHeight() / (float) 4;
+            float left = translateX(currentText.getBoundingBox().left) + mCanvas.getWidth() / (float) 4;
+            float bottom = translateY(currentText.getBoundingBox().bottom) + mCanvas.getHeight() / (float) 4;
             canvas.drawText(currentText.getValue(), left, bottom, sTextPaint);
         }
     }
