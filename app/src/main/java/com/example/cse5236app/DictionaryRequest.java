@@ -1,6 +1,7 @@
 package com.example.cse5236app;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,20 +13,20 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class DictionaryRequest extends AsyncTask<String,Integer,String>{
+public class DictionaryRequest extends AsyncTask<String,Integer,String> {
 
     Context context;
     TextView t1;
     EditText e1;
 
-    DictionaryRequest(Context context, TextView t1){
+    DictionaryRequest(Context context, TextView t1) {
         this.context = context;
         this.t1 = t1;
     }
 
 
     @Override
-    protected String doInBackground(String...params) {
+    protected String doInBackground(String... params) {
 
         String word = params[0];
         String myUrl;
@@ -35,16 +36,16 @@ public class DictionaryRequest extends AsyncTask<String,Integer,String>{
         /**
          * creates the url
          */
-            final String language = "en-gb";
-            final String word_id = word.toLowerCase();
-            myUrl = "https://od-api.oxforddictionaries.com:443/api/v2/entries/" + language + "/" + word_id;
+        final String language = "en-gb";
+        final String word_id = word.toLowerCase();
+        myUrl = "https://od-api.oxforddictionaries.com:443/api/v2/entries/" + language + "/" + word_id;
 
         try {
             URL url = new URL(myUrl);
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-            urlConnection.setRequestProperty("Accept","application/json");
-            urlConnection.setRequestProperty("app_id",app_id);
-            urlConnection.setRequestProperty("app_key",app_key);
+            urlConnection.setRequestProperty("Accept", "application/json");
+            urlConnection.setRequestProperty("app_id", app_id);
+            urlConnection.setRequestProperty("app_key", app_key);
 
             // read the output from the server
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -57,8 +58,7 @@ public class DictionaryRequest extends AsyncTask<String,Integer,String>{
 
             return stringBuilder.toString();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return e.toString();
         }
@@ -69,7 +69,7 @@ public class DictionaryRequest extends AsyncTask<String,Integer,String>{
         String def;
         super.onPostExecute(result);
 
-        try{
+        try {
             JSONObject js = new JSONObject(result);
             JSONArray json_result = js.getJSONArray("results")
                     .getJSONObject(0)
@@ -83,12 +83,20 @@ public class DictionaryRequest extends AsyncTask<String,Integer,String>{
 
             def = json_result.getString(0);
             t1.setText(def);
+            Toast toast = Toast.makeText(context,
+                    "Definition found!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
 
-        }
-        catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
+            Toast toast = Toast.makeText(context,
+                    "Definition not found", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
         }
 
     }
-
 }
+
+
