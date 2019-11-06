@@ -7,14 +7,14 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recycler_view_word"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/word_item" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_add_folder"
+        android:id="@+id/button_add_word"
         android:layout_width="49dp"
         android:layout_height="79dp"
         android:layout_gravity="end"

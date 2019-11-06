@@ -1,111 +1,82 @@
 package com.example.cse5236app;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.widget.Toast;
 
-        import com.example.cse5236app.model.Folder;
-        import com.example.cse5236app.model.Word;
-        import com.example.cse5236app.viewadapter.FolderAdapter;
-        import com.example.cse5236app.viewmodel.FolderViewModel;
-        import com.example.cse5236app.viewmodel.WordViewModel;
-        import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import androidx.annotation.NonNull;
-        import androidx.appcompat.app.AppCompatActivity;
-        import androidx.lifecycle.ViewModelProviders;
-        import androidx.recyclerview.widget.ItemTouchHelper;
-        import androidx.recyclerview.widget.LinearLayoutManager;
-        import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class WordActivity extends AppCompatActivity {}
-/*
-    public static final int ADD_WORD_REQUEST = 1;
+import com.example.cse5236app.model.Word;
+import com.example.cse5236app.viewadapter.WordAdapter;
+import com.example.cse5236app.viewmodel.WordViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-    public static final int UPDATE_WORD_REQUEST = 2;
+import org.w3c.dom.Text;
 
-    private WordViewModel wordViewModel;
+import java.util.List;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_word);
+public class WordActivity extends AppCompatActivity {
+        private WordViewModel wordViewModel;
+        public static final int ADD_WORD_REQUEST = 1;
 
-        wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
 
-        initAddFolderButton();
-        initFolderList();
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        @Override
+        protected void onCreate(Bundle savedInstanceState){
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_word);
 
-        if (requestCode == ADD_WORD_REQUEST && resultCode == RESULT_OK) {
-            String title = AddFolderActivity.getNewFolderTitle(data);
+                FloatingActionButton buttonAddNote = findViewById(R.id.button_add_word);
+                buttonAddNote.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                                Intent intent = new Intent(WordActivity.this, AddWordActivity.class);
+                                startActivityForResult(intent, ADD_WORD_REQUEST);
+                        }
+                });
 
-            Word word = new Word();
-            wordViewModel.insert(folder);
 
-            Toast.makeText(this, "Folder saved", Toast.LENGTH_SHORT).show();
+                RecyclerView recyclerView = findViewById(R.id.recycler_view_word);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setHasFixedSize(true);
 
-        } else if (requestCode == UPDATE_FOLDER_REQUEST && resultCode == RESULT_OK) {
-            int id = AddFolderActivity.getUpdatedFolderId(data);
-            String title = AddFolderActivity.getNewFolderTitle(data);
+                final WordAdapter adapter = new WordAdapter();
+                recyclerView.setAdapter(adapter);
 
-            folderViewModel.get(id).observe(this, folder -> {
-                folder.setTitle(title);
-                folderViewModel.update(folder);
-            });
+                wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
+                wordViewModel.getAllWords().observe(this, new Observer<List<Word>>() {
+                        @Override
+                        public void onChanged( List<Word> words) {
+                                adapter.setWords(words);
+                        }
+                });
+                }
 
-            Toast.makeText(this, "Folder updated", Toast.LENGTH_SHORT).show();
+         @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data){
+                super.onActivityResult(requestCode,resultCode,data);
+                if(requestCode == ADD_WORD_REQUEST && resultCode == RESULT_OK){
+                        String word_name = data.getStringExtra(AddWordActivity.EXTRA_WORD);
+                        String definition = data.getStringExtra(AddWordActivity.EXTRA_DEF);
+                        Word word = new Word(word_name, definition);
+                        wordViewModel.insert(word);
+                        Toast.makeText(this, "Word saved", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                        Toast.makeText(this, "Word not saved", Toast.LENGTH_SHORT).show();
+                }
 
-        } else {
-            Toast.makeText(this, "Folder not saved", Toast.LENGTH_SHORT).show();
+         }
 
         }
-    }
 
-    private void initAddFolderButton() {
 
-        FloatingActionButton buttonAddFolder = findViewById(R.id.button_add_folder);
-        buttonAddFolder.setOnClickListener(view -> {
-            Intent intent = AddFolderActivity.newCreateFolderIntent(FolderActivity.this);
-            startActivityForResult(intent, ADD_FOLDER_REQUEST);
-        });
-    }
 
-    private void initFolderList() {
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-
-        final FolderAdapter adapter = new FolderAdapter();
-        recyclerView.setAdapter(adapter);
-
-        folderViewModel.getAllFolders().observe(this, adapter::setFolders);
-
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
-                                  @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            /**
-             * deletes a folder when swiped
-             */
-/*
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                folderViewModel.delete(adapter.getFolderAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(FolderActivity.this, "Folder deleted", Toast.LENGTH_SHORT).show();
-            }
-        }).attachToRecyclerView(recyclerView);
-    }
-
-}
-*/
