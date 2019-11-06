@@ -1,6 +1,7 @@
 package com.example.cse5236app;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -151,7 +152,8 @@ public class TextScannerFragment extends Fragment {
         if (graphic != null) {
             text = graphic.getTextBlock();
             if (text != null && text.getValue() != null) {
-                Log.d(TAG, text.getValue());
+                Intent intent = TextHighlightActivity.newTextHighlightIntent(getContext(), text.getValue());
+                startActivity(intent);
             }
             else {
                 Log.d(TAG, "text data is null");

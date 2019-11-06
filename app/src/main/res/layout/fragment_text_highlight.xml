@@ -5,4 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".TextHighlightFragment">
 
+    <TextView
+        android:id="@+id/selected_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textIsSelectable="true"
+        android:textSize="24sp"/>
+
 </FrameLayout>
