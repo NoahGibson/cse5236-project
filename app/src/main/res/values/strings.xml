@@ -2,4 +2,5 @@
     <string name="app_name">cse5236app</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="text_scanner_prompt">Position text inside rectangle</string>
+    <string name="save_word">Save Word</string>
 </resources>

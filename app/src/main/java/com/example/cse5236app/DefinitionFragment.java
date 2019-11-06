@@ -1,15 +1,25 @@
 package com.example.cse5236app;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.cse5236app.model.Word;
+import com.example.cse5236app.viewmodel.WordViewModel;
+
+import java.util.List;
 
 public class DefinitionFragment extends Fragment {
 
@@ -21,6 +31,9 @@ public class DefinitionFragment extends Fragment {
 
     private TextView mWordTextView;
     private TextView mDefinitionTextView;
+    private Button mSaveWordButton;
+
+    private WordViewModel mWordViewModel;
 
     public DefinitionFragment() {}
 
@@ -49,6 +62,11 @@ public class DefinitionFragment extends Fragment {
             fetchDefinition();
         }
 
+        mSaveWordButton = (Button) v.findViewById(R.id.save_word_button);
+        mSaveWordButton.setOnClickListener(view -> saveWord());
+
+        mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
+
         return v;
     }
 
@@ -61,6 +79,20 @@ public class DefinitionFragment extends Fragment {
     private void fetchDefinition() {
         DictionaryRequest dictionaryRequest = new DictionaryRequest(getContext(), mDefinitionTextView);
         dictionaryRequest.execute(mWord);
+    }
+
+    private void saveWord() {
+        String word = mWord;
+        String definition = mDefinitionTextView.getText().toString();
+
+        if (!word.trim().isEmpty() && !definition.trim().isEmpty()) {
+            mWordViewModel.insert(new Word(word, definition));
+            Toast.makeText(getContext(), "Word saved", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getContext(), WordActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(getContext(), "Unable to save word", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
