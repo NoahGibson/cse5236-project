@@ -31,6 +31,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordHolder> {
     public void onBindViewHolder(@NonNull WordHolder holder, int position) {
         Word currentWord = words.get(position);
         holder.textViewWord.setText(currentWord.getWord());
+        holder.textViewDef.setText(currentWord.getDefinition());
     }
 
     /**
@@ -51,9 +52,11 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordHolder> {
      */
     public class WordHolder extends RecyclerView.ViewHolder{
         private TextView textViewWord;
+        private TextView textViewDef;
         public WordHolder(View itemView){
             super(itemView);
             textViewWord = itemView.findViewById(R.id.text_view_word);
+            textViewDef = itemView.findViewById(R.id.text_view_definition);
         }
     }
 

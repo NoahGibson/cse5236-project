@@ -4,6 +4,8 @@ package com.example.cse5236app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +19,14 @@ import com.example.cse5236app.viewadapter.WordAdapter;
 import com.example.cse5236app.viewmodel.WordViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class WordActivity extends AppCompatActivity {
         private WordViewModel wordViewModel;
         public static final int ADD_WORD_REQUEST = 1;
+
 
 
         @Override
