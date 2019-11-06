@@ -1,5 +1,6 @@
 package com.example.cse5236app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ActionMode;
@@ -19,8 +20,6 @@ public class TextHighlightFragment extends Fragment {
     private TextView mSelectedTextView;
 
     private static final int DEFINITION = 1;
-
-    private static final String TAG = "TextHighlightFragment";
 
     public TextHighlightFragment() {}
 
@@ -71,7 +70,7 @@ public class TextHighlightFragment extends Fragment {
                             max = Math.max(0, Math.max(selStart, selEnd));
                         }
                         final CharSequence selectedText = mSelectedTextView.getText().subSequence(min, max);
-                        launchDefinitionScreen(selectedText.toString());
+                        launchDefinitionScreen(selectedText.toString().trim().toLowerCase());
                         actionMode.finish();
                         return true;
                     default:
@@ -89,7 +88,8 @@ public class TextHighlightFragment extends Fragment {
     }
 
     private void launchDefinitionScreen(String text) {
-
+        Intent intent = DefinitionActivity.newDefinitionIntent(getContext(), text.trim().toLowerCase());
+        startActivity(intent);
     }
 
 }
