@@ -2,7 +2,6 @@ package com.example.cse5236app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +20,8 @@ public class TextHighlightFragment extends Fragment {
 
     private static final int DEFINITION = 1;
 
-    public TextHighlightFragment() {}
+    public TextHighlightFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,8 @@ public class TextHighlightFragment extends Fragment {
             }
 
             @Override
-            public void onDestroyActionMode(ActionMode actionMode) {}
+            public void onDestroyActionMode(ActionMode actionMode) {
+            }
 
         });
 

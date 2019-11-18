@@ -69,7 +69,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         postInvalidate();
     }
 
-    public void add(T graphic){
+    public void add(T graphic) {
         synchronized (mLock) {
             mGraphics.add(graphic);
         }

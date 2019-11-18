@@ -1,18 +1,15 @@
 package com.example.cse5236app.repository;
 
-import com.example.cse5236app.dao.FolderDao;
-import com.example.cse5236app.dao.WordDao;
-import com.example.cse5236app.db.AppDatabase;
-import com.example.cse5236app.model.Word;
-import com.example.cse5236app.model.Folder;
-
 import android.app.Application;
 import android.os.AsyncTask;
 
-import androidx.lifecycle.LiveData;
-import androidx.room.Dao;
+import com.example.cse5236app.dao.WordDao;
+import com.example.cse5236app.db.AppDatabase;
+import com.example.cse5236app.model.Word;
 
 import java.util.List;
+
+import androidx.lifecycle.LiveData;
 
 public class WordRepository {
 
@@ -29,18 +26,18 @@ public class WordRepository {
         return wordDao.findWordById(id);
     }
 
-    public void insert(Word word){
+    public void insert(Word word) {
         new InsertFolderAsyncTask(wordDao).execute(word);
     }
 
-    public void delete(Word word){
+    public void delete(Word word) {
         new DeleteFolderAsyncTask(wordDao).execute(word);
     }
 
     /**
      * list of all words function
      */
-    public LiveData<List<Word>> getAllWords(){
+    public LiveData<List<Word>> getAllWords() {
         return allWords;
     }
 
@@ -67,10 +64,12 @@ public class WordRepository {
     private static class DeleteFolderAsyncTask extends AsyncTask<Word, Void, Void> {
         private WordDao wordDao;
 
-        private DeleteFolderAsyncTask(WordDao wordDao) { this.wordDao = wordDao;}
+        private DeleteFolderAsyncTask(WordDao wordDao) {
+            this.wordDao = wordDao;
+        }
 
         @Override
-        protected Void doInBackground(Word... words){
+        protected Void doInBackground(Word... words) {
             wordDao.delete(words[0]);
             return null;
         }

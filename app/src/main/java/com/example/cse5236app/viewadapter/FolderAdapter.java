@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.cse5236app.AddFolderActivity;
 import com.example.cse5236app.FolderActivity;
 import com.example.cse5236app.R;
@@ -19,7 +16,11 @@ import com.example.cse5236app.model.Folder;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHolder> {
+
     private List<Folder> folders = new ArrayList<>();
 
     @NonNull
@@ -43,12 +44,12 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
         return folders.size();
     }
 
-    public void setFolders(List<Folder> folders){
+    public void setFolders(List<Folder> folders) {
         this.folders = folders;
         notifyDataSetChanged(); //this will be changed later
     }
 
-    public Folder getFolderAt(int position){
+    public Folder getFolderAt(int position) {
         return folders.get(position);
     }
 
@@ -59,7 +60,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
 
         private TextView textViewTitle;
 
-        public FolderHolder(View itemView){
+        public FolderHolder(View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.text_view_title);
         }
@@ -78,7 +79,5 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderHold
         }
 
     }
-
-
 
 }

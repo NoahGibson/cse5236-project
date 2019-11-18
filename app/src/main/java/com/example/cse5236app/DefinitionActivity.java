@@ -1,12 +1,12 @@
 package com.example.cse5236app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class DefinitionActivity extends AppCompatActivity {
 
@@ -46,6 +46,6 @@ public class DefinitionActivity extends AppCompatActivity {
                     .add(R.id.definition_fragment_container, fragment)
                     .commit();
         }
-
     }
+
 }

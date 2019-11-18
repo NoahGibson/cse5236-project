@@ -14,7 +14,6 @@ import androidx.room.Update;
 @Dao
 public interface FolderDao {
 
-
     @Query("SELECT * FROM folder_table")
     LiveData<List<Folder>> getAllFolders();
 
@@ -29,6 +28,5 @@ public interface FolderDao {
 
     @Delete
     void delete(Folder folder);
-
 
 }

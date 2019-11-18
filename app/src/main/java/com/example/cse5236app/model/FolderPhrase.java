@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
 @Entity(tableName = "folder_phrase_table",
-        primaryKeys = { "folder_id", "phrase_id" },
+        primaryKeys = {"folder_id", "phrase_id"},
         foreignKeys = {
                 @ForeignKey(entity = Folder.class,
                         parentColumns = "id",

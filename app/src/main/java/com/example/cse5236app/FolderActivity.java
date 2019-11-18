@@ -2,7 +2,6 @@ package com.example.cse5236app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -43,10 +42,7 @@ public class FolderActivity extends AppCompatActivity {
     look at this
      */
         launch_word_button = (Button) findViewById(R.id.button_open_word);
-        launch_word_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){ openActivityWord(); }
-        });
+        launch_word_button.setOnClickListener(v -> openActivityWord());
     }
 
     public void openActivityWord() {

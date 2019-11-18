@@ -1,4 +1,5 @@
 package com.example.cse5236app;
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.Gravity;
@@ -6,14 +7,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class DictionaryRequest extends AsyncTask<String,Integer,String> {
+public class DictionaryRequest extends AsyncTask<String, Integer, String> {
 
     Context context;
     TextView t1;
@@ -23,7 +27,6 @@ public class DictionaryRequest extends AsyncTask<String,Integer,String> {
         this.context = context;
         this.t1 = t1;
     }
-
 
     @Override
     protected String doInBackground(String... params) {
@@ -95,8 +98,8 @@ public class DictionaryRequest extends AsyncTask<String,Integer,String> {
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
-
     }
+
 }
 
 

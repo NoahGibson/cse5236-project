@@ -1,11 +1,8 @@
 package com.example.cse5236app.model;
 
-import com.example.cse5236app.dao.FolderDao;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 
 @Entity(tableName = "folder_table")
 public class Folder {
@@ -27,7 +24,6 @@ public class Folder {
     public Folder(String title) {
         this.title = title;
     }
-
 
     public String getTitle() {
         return title;
