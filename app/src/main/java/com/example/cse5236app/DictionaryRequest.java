@@ -1,6 +1,8 @@
 package com.example.cse5236app;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.view.Gravity;
 import android.widget.EditText;
@@ -51,7 +53,9 @@ public class DictionaryRequest extends AsyncTask<String, Integer, String> {
             urlConnection.setRequestProperty("app_key", app_key);
 
             // read the output from the server
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
             StringBuilder stringBuilder = new StringBuilder();
 
             String line = null;

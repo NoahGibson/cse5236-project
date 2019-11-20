@@ -1,7 +1,11 @@
 package com.example.cse5236app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.ConnectivityManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +37,25 @@ public class AddWordActivity extends AppCompatActivity {
 
 
         Button button_definition = (Button) findViewById(R.id.button_get_definition);
-        button_definition.setOnClickListener(this::requestAPIButtonClick);
+        button_definition.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (isNetworkAvailable()) {
+                    requestAPIButtonClick(v);
+                } else {
+                    Toast toast = Toast.makeText(AddWordActivity.this,
+                            "No Connection", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
+            }
+        });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     /**
