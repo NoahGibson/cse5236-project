@@ -46,6 +46,9 @@ public class WordActivity extends AppCompatActivity {
                 if(item.getItemId() == R.id.edit) {
                         Toast.makeText(WordActivity.this, "Swipe to delete", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                        return super.onOptionsItemSelected(item);
+                }
                 return true;
         }
 

@@ -1,5 +1,7 @@
 package com.example.cse5236app;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.view.Gravity;
 import android.widget.EditText;
@@ -25,6 +27,7 @@ public class DictionaryRequest extends AsyncTask<String,Integer,String> {
     }
 
 
+
     @Override
     protected String doInBackground(String... params) {
 
@@ -40,29 +43,32 @@ public class DictionaryRequest extends AsyncTask<String,Integer,String> {
         final String word_id = word.toLowerCase();
         myUrl = "https://od-api.oxforddictionaries.com:443/api/v2/entries/" + language + "/" + word_id;
 
-        try {
-            URL url = new URL(myUrl);
-            HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-            urlConnection.setRequestProperty("Accept", "application/json");
-            urlConnection.setRequestProperty("app_id", app_id);
-            urlConnection.setRequestProperty("app_key", app_key);
+            try {
+                URL url = new URL(myUrl);
+                HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+                urlConnection.setRequestProperty("Accept", "application/json");
+                urlConnection.setRequestProperty("app_id", app_id);
+                urlConnection.setRequestProperty("app_key", app_key);
 
-            // read the output from the server
-            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            StringBuilder stringBuilder = new StringBuilder();
+                // read the output from the server
 
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line + "\n");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+                StringBuilder stringBuilder = new StringBuilder();
+
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line + "\n");
+                }
+
+                return stringBuilder.toString();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return e.toString();
             }
-
-            return stringBuilder.toString();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return e.toString();
         }
-    }
+
 
     @Override
     protected void onPostExecute(String result) {
