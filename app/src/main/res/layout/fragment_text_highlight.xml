@@ -3,13 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TextHighlightFragment">
+    tools:context=".TextHighlightFragment"
+    android:background="@color/colorBackground">
 
-    <TextView
-        android:id="@+id/selected_text"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textIsSelectable="true"
-        android:textSize="24sp"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/highlight_prompt"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/selected_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textSize="26sp"
+            android:layout_gravity="center"
+            android:padding="10dp" />
+
+    </LinearLayout>
 
 </FrameLayout>

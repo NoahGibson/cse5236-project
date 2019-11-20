@@ -3,4 +3,5 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="text_scanner_prompt">Position text inside rectangle</string>
     <string name="save_word">Save Word</string>
+    <string name="highlight_prompt">Highlight the desired word</string>
 </resources>
