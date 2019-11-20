@@ -1,7 +1,5 @@
 package com.example.cse5236app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +11,8 @@ import android.widget.Toast;
 
 import com.example.cse5236app.model.Folder;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class AddFolderActivity extends AppCompatActivity {
 
     private static final String EXTRA_TITLE = "com.example.cse5236app.EXTRA_TITLE";
@@ -22,7 +22,6 @@ public class AddFolderActivity extends AppCompatActivity {
     private EditText editTextTitle;
 
     private int mFolderId = -1;
-
 
     /**
      * Returns a new intent which launches this activity for creating a new folder.
@@ -81,15 +80,15 @@ public class AddFolderActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.add_folder_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.save_folder:
                 saveFolder();
                 return true;
@@ -98,9 +97,9 @@ public class AddFolderActivity extends AppCompatActivity {
         }
     }
 
-    private void saveFolder(){
+    private void saveFolder() {
         String title = editTextTitle.getText().toString();
-        if(title.trim().isEmpty()){
+        if (title.trim().isEmpty()) {
             Toast.makeText(this, "Please insert a title", Toast.LENGTH_SHORT).show();
             return;
         }

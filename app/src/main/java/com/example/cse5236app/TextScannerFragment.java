@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 
 import com.example.cse5236app.ui.CameraSourcePreview;
 import com.example.cse5236app.ui.GraphicOverlay;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -37,7 +35,8 @@ public class TextScannerFragment extends Fragment {
 
     private GestureDetector mGestureDetector;
 
-    public TextScannerFragment() {}
+    public TextScannerFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,7 +97,7 @@ public class TextScannerFragment extends Fragment {
 
         if (!croppedDetector.isOperational()) {
             Log.w(TAG, "Detector dependencies not loaded yet");
-        } else{
+        } else {
             mCameraSource = new CameraSource.Builder(getContext(), croppedDetector)
                     .setFacing(CameraSource.CAMERA_FACING_BACK)
                     .setRequestedPreviewSize(1280, 1024)
@@ -123,15 +122,15 @@ public class TextScannerFragment extends Fragment {
     private void requestCameraPermission() {
         Log.w(TAG, "Requesting camera permission");
 
-        final String[] permissions = new String[]{ Manifest.permission.CAMERA };
+        final String[] permissions = new String[]{Manifest.permission.CAMERA};
 
         requestPermissions(permissions, requestPermissionID);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                          @NonNull String[] permissions,
-                                          @NonNull int[] grantResults) {
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         if (requestCode != requestPermissionID) {
             Log.d(TAG, "Received unexpected permission result: " + requestCode);
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -154,13 +153,11 @@ public class TextScannerFragment extends Fragment {
             if (text != null && text.getValue() != null) {
                 Intent intent = TextHighlightActivity.newTextHighlightIntent(getContext(), text.getValue());
                 startActivity(intent);
-            }
-            else {
+            } else {
                 Log.d(TAG, "text data is null");
             }
-        }
-        else {
-            Log.d(TAG,"no text detected");
+        } else {
+            Log.d(TAG, "no text detected");
         }
         return text != null;
     }

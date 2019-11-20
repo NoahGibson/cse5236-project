@@ -1,14 +1,12 @@
 package com.example.cse5236app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.gms.vision.text.TextBlock;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 public class TextHighlightActivity extends AppCompatActivity {
 
@@ -48,6 +46,6 @@ public class TextHighlightActivity extends AppCompatActivity {
                     .add(R.id.text_highlight_fragment_container, fragment)
                     .commit();
         }
-
     }
+
 }

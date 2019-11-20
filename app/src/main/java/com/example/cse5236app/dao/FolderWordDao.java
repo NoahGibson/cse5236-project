@@ -14,8 +14,8 @@ import androidx.room.Query;
 public interface FolderWordDao {
 
     @Query("SELECT w.id, w.word, w.definition FROM word_table w, folder_word_table f " +
-           "WHERE f.folder_id = :folderId " +
-           "AND f.word_id = w.id")
+            "WHERE f.folder_id = :folderId " +
+            "AND f.word_id = w.id")
     List<Word> findAllWordsInFolder(int folderId);
 
     @Insert()

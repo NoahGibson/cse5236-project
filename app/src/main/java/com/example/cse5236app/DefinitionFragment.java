@@ -2,13 +2,6 @@ package com.example.cse5236app;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +12,9 @@ import android.widget.Toast;
 import com.example.cse5236app.model.Word;
 import com.example.cse5236app.viewmodel.WordViewModel;
 
-import java.util.List;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 public class DefinitionFragment extends Fragment {
 
@@ -35,7 +30,8 @@ public class DefinitionFragment extends Fragment {
 
     private WordViewModel mWordViewModel;
 
-    public DefinitionFragment() {}
+    public DefinitionFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
