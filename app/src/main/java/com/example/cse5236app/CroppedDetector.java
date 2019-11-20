@@ -32,7 +32,7 @@ public class CroppedDetector extends Detector {
 
         YuvImage yuvImage = new YuvImage(frame.getGrayscaleImageData().array(), ImageFormat.NV21, width, height, null);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        yuvImage.compressToJpeg(new Rect(left, top, right, bottom), 100, byteArrayOutputStream);
+        yuvImage.compressToJpeg(new Rect(left, top, right, bottom), 50, byteArrayOutputStream);
         byte[] jpegArray = byteArrayOutputStream.toByteArray();
         Bitmap bitmap = BitmapFactory.decodeByteArray(jpegArray, 0, jpegArray.length);
 

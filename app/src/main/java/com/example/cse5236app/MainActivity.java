@@ -3,7 +3,7 @@ package com.example.cse5236app;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initAddFolderButton() {
 
-        FloatingActionButton buttonAddFolder = findViewById(R.id.button_add_folder);
+        ExtendedFloatingActionButton buttonAddFolder = findViewById(R.id.button_add_folder);
         buttonAddFolder.setOnClickListener(view -> {
             Intent intent = new Intent(this, FolderActivity.class);
             startActivity(intent);
