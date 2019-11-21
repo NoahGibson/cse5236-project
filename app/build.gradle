@@ -22,6 +22,7 @@ android {
     }
 }
 
+
 dependencies {
 
     def lifecycle_version = "2.1.0"
@@ -83,4 +84,22 @@ dependencies {
 
     // For Mobile Vision API
     implementation 'com.google.android.gms:play-services-vision:11.0.4'
+
+    //For testing
+
+    implementation 'androidx.test.ext:junit:1.1.2-alpha02'
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+
+    // Assertions
+    androidTestImplementation 'androidx.test.ext:junit:1.0.0'
+    androidTestImplementation 'androidx.test.ext:truth:1.0.0'
+    androidTestImplementation 'com.google.truth:truth:0.42'
+
 }
+
+configurations {
+    all*.exclude group: 'org.hamcrest', module: 'hamcrest-core'
+}
+
