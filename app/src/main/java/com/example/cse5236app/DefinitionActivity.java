@@ -12,6 +12,8 @@ public class DefinitionActivity extends AppCompatActivity {
 
     private static final String EXTRA_WORD = "com.example.cse5236app.EXTRA_WORD";
 
+    private DefinitionFragment mDefinitionFragment;
+
     /**
      * Returns a new intent which launches this activity for displaying a definition.
      */
@@ -37,14 +39,29 @@ public class DefinitionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_definition);
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.definition_fragment_container);
+        recoverFragment();
+    }
 
-        if (fragment == null) {
-            fragment = new DefinitionFragment();
-            fm.beginTransaction()
-                    .add(R.id.definition_fragment_container, fragment)
-                    .commit();
+    public DefinitionFragment getFragmentForTest() {
+        recoverFragment();
+        return mDefinitionFragment;
+    }
+
+    private void recoverFragment() {
+        if (mDefinitionFragment == null) {
+            FragmentManager fm = getSupportFragmentManager();
+            if (fm.getFragments().size() == 0) {
+                DefinitionFragment fragment = new DefinitionFragment();
+                fm.beginTransaction()
+                        .add(R.id.definition_fragment_container, fragment)
+                        .commit();
+            } else {
+                for (Fragment fragment: fm.getFragments()) {
+                    if (fragment instanceof DefinitionFragment) {
+                        mDefinitionFragment = (DefinitionFragment) fragment;
+                    }
+                }
+            }
         }
     }
 
