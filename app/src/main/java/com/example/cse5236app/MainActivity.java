@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
         }
 
-        initAddFolderButton();
+        initSavedWordsButton();
     }
 
-    private void initAddFolderButton() {
+    private void initSavedWordsButton() {
 
-        ExtendedFloatingActionButton buttonAddFolder = findViewById(R.id.button_add_folder);
-        buttonAddFolder.setOnClickListener(view -> {
-            Intent intent = new Intent(this, FolderActivity.class);
+        ExtendedFloatingActionButton buttonSavedWords = findViewById(R.id.button_saved_words);
+        buttonSavedWords.setOnClickListener(view -> {
+            Intent intent = new Intent(this, WordActivity.class);
             startActivity(intent);
         });
     }
