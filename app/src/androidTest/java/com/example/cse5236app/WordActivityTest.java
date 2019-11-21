@@ -23,8 +23,14 @@ public class WordActivityTest {
     }
 
     @Test
-    public void testWord() {
-        View view = wordActivity.findViewById(R.layout.activity_word);
+    public void testButton() {
+        View view = wordActivity.findViewById(R.id.button_add_word);
+        assertNotNull(view);
+    }
+
+    @Test
+    public void testLayout() {
+        View view = wordActivity.findViewById(R.id.recycler_view_word);
         assertNotNull(view);
     }
 
